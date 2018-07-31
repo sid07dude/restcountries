@@ -1,0 +1,61 @@
+img{
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  padding: 5px;
+  margin:5px;
+}
+.countryFlag{
+    width:180px;
+    height:180px;
+}
+a{
+    color:black;
+
+}
+.myCard{
+    padding:5px;
+    margin:5px;
+}
+
+body {
+    min-height: 75rem; /* Can be removed; just added for demo purposes */
+  }
+  
+  .navbar {
+    margin-bottom: 0;
+  }
+  
+  .jumbotron {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    margin-bottom: 0;
+    background-color: #fff;
+  }
+  
+  .jumbotron p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .jumbotron-heading {
+    font-weight: 300;
+  }
+  
+  .jumbotron .container {
+    max-width: 40rem;
+  }
+  
+  .album {
+    min-height: 50rem; /* Can be removed; just added for demo purposes */
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: #f7f7f7;
+  }
+  
+  footer {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  footer p {
+    margin-bottom: .25rem;
+  }

@@ -1,0 +1,82 @@
+<div *ngIf="allCountryDetails">
+    <section class="jumbotron text-center" id="section">
+        <div class="container">
+            <h1 class="jumbotron-heading">List of Countries</h1>
+            <p class="lead text-muted">There is a list of all countries depending upon the region .It can be searched by currencies or its native language.
+            </p>
+            <p>
+                <input class="col-md-6 col-sm-8 col-xs-10" type="text" placeholder="Search by Country Name" [(ngModel)]="searchTerm" />&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                <button (click)="goBack()" class="btn btn-secondary col-md-6 col-sm-4 col-xs-2">
+                    Go Back
+                </button>
+            </p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12 border border-dark rounded" *ngFor="let allCountryDetailList of allCountryDetails|searchFilter:searchTerm">
+                <a [routerLink]="['/country',allCountryDetailList.alpha3Code|lowercase]">
+                    <div class="col-md-3 col-sm-4 col-xs-6" *ngIf="allCountryDetailList.flag!=''">
+                        <img class="countryFlag" src={{allCountryDetailList.flag}}/>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-6" *ngIf="allCountryDetailList.flag==''">
+                        <img class="countryFlag" src="../../../assets/images/noFlag.jpg" />
+                    </div>
+                </a>
+                <div class="col-md-9 col-sm-6 col-xs-6 table-responsive-sm">
+                    <table class="table table-sm" style="height: 100px">
+                        <tr *ngIf="allCountryDetailList.name!=''">
+                            <td>
+                                Name
+                            </td>
+                            <td class="align-middle">
+                                {{allCountryDetailList.name}}
+                            </td>
+                        </tr>
+                        <tr *ngIf="allCountryDetailList.capital!=''">
+                            <td>
+                                Capital
+                            </td>
+                            <td class="align-middle">
+                                {{allCountryDetailList.capital}}
+                            </td>
+                        </tr>
+                        <tr *ngIf="allCountryDetailList.currencies!=''">
+                            <td>
+                                Currency
+                            </td>
+                            <div class="align-text-top" *ngFor="let currencyName of allCountryDetailList.currencies let i = index let first=first;let last=last">
+                                <td *ngIf="currencyName.code!=null">
+                                    <a [routerLink]="['/currency',currencyName.code|lowercase]"> {{currencyName.name}}{{last? '' : ','}}</a>
+                                </td>
+                                
+                            </div>
+                        </tr>
+                        <tr *ngIf="allCountryDetailList.languages!=''">
+                            <td>
+                                Language
+                            </td>
+                            <div class="align-text-top" *ngFor="let languageName of allCountryDetailList.languages let i = index let first=first;let last=last">
+                                <td *ngIf="languageName.iso639_1!=null">
+                                    <a [routerLink]="['/language',languageName.iso639_1|lowercase]">{{ languageName.name}}{{last? ' ' : ','}}</a>
+                                </td>
+                                <td *ngIf="languageName.iso639_1==null">
+                                    <a [routerLink]="['/language',languageName.iso639_2|lowercase]">{{ languageName.name}}{{last? ' ' : ','}}</a>
+                                </td>
+                            </div>
+                        </tr>
+                        <tr *ngIf="!allCountryDetailList.languages">{{ languageName.name}}</tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#section">Back to top</a>
+            </p>
+        </div>
+    </footer>

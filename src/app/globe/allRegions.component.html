@@ -1,0 +1,32 @@
+<div class="body">
+    <img class="imageHeader" src="../../assets/images/globe.png" />
+    <br/>
+    <div class="headerText">
+        Geographic Regions of the World
+    </div>
+    <div *ngFor="let regionInfo of allRegions">
+        <div class="card card-primary">
+            <a [routerLink]="['/region',regionInfo.name | lowercase]" style="cursor: pointer;">
+                <div class="card-header">
+                    <h3 class="card-title">{{regionInfo.name}}</h3>
+                </div>
+            </a>
+            <div class="card-body">
+                <div class="col-md-10 col-sm-10 col-xs-10">
+                    <div class="row vertical-align">
+                        <a [routerLink]="['/region',regionInfo.name| lowercase]" style="cursor: pointer;">
+                            <div class="col-md-4 col-sm-4 col-xs-6">
+                                <img class="imageClass" src={{regionInfo.photoPath}} />
+                            </div>
+                        </a>
+                        <div class="col-md-8 col-sm-8 col-xs-6">
+                            <p>{{regionInfo.regionInfo1}}</p>
+                            <p>{{regionInfo.regionInfo2}}</p>
+                            <p>{{regionInfo.regionInfo3}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

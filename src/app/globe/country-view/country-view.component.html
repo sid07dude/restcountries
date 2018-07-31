@@ -1,0 +1,115 @@
+<div class="container">
+    <div *ngIf="countryView">
+        <div class="card-header">
+            <h3 class="card-title" style="text-align: center">{{countryView.name}}</h3>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4 col-sm-8">
+                    <img class=imageFlag src="{{countryView.flag}}" />
+                    <br>
+                    <br>
+                    <div class="row" style="text-align: center">
+                        <div class="col-md-6 col-sm-6">
+                            <button (click)="goBack()" class="btn btn-success btn-small">Go Back</button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-md-4 table table-responsive">
+                    <table class="table table-md" style="height: 100px">
+                        <tr *ngIf="countryView.capital">
+                            <td>
+                                <b>Capital :</b>
+                            </td>
+                            <td>{{countryView.capital}}</td>
+                        </tr>
+                        <tr *ngIf="countryView.currencies!=''">
+                            <td>
+                                <b>Currency :</b>
+                            </td>
+                            <div class="align-text-top" *ngFor="let currencyName of countryView.currencies let i = index">
+                                <td *ngIf="currencyName.code!=null&&currencyName.symbol!=null&&currencyName.name!=null&&currencyName.name!=(none)">
+                                    {{i+1}})
+                                    <a [routerLink]="['/currency',currencyName.code|lowercase]"> {{currencyName.name}} {{currencyName.symbol}}</a>
+
+                                </td>
+                                <td *ngIf="currencyName.symbol==null&&currencyName.name!=(none)">
+                                    {{i+1}})
+                                    <a [routerLink]="['/currency',currencyName.code|lowercase]"> {{currencyName.name}}</a>
+
+                                </td>
+                            </div>
+                        </tr>
+
+                        <tr *ngIf="countryView.languages!=''">
+                            <td>
+                                <b>Languages :</b>
+                            </td>
+                            <div class="align-text-top" *ngFor="let languageName of countryView.languages let i = index let first=first;let last=last">
+                                <td *ngIf="languageName.iso639_1!=null">
+                                    <a [routerLink]="['/language',languageName.iso639_1|lowercase]">{{ languageName.name}}{{last? ' ' : ','}}</a>
+                                </td>
+                                <td *ngIf="languageName.iso639_1==null">
+                                    <a [routerLink]="['/language',languageName.iso639_2|lowercase]">{{ languageName.name}}{{last? ' ' : ','}}</a>
+                                </td>
+                            </div>
+                        </tr>
+                        <tr *ngIf="countryView.region!=''">
+                            <td>
+                                <b>Region :</b>
+                            </td>
+                            <td>{{countryView.region}}</td>
+                        </tr>
+                        <tr *ngIf="countryView.subregion!=''">
+                            <td>
+                                <b>Subregion :</b>
+                            </td>
+                            <td>{{countryView.subregion}}</td>
+                        </tr>
+
+                        <tr *ngIf="countryView.borders!=''">
+                            <td>
+                                <b>Borders :</b>
+                            </td>
+                            <td>
+                               <span *ngFor="let borderName of countryView.borders let first=first;let last=last"> {{ borderName}}{{last? ' ' : ','}}</span>
+                            </td>
+                        </tr>
+
+                        <tr *ngIf="countryView.population!=''">
+                            <td>
+                                <b>Population :</b>
+                            </td>
+                            <td>{{countryView.population}}</td>
+                        </tr>
+                        <tr *ngIf="countryView.timezones!=''">
+                            <td>
+                                <b>Time Zones :</b>
+                            </td>
+                            <div class="align-text-top" *ngFor="let tzone of countryView.timezones let i = index let first=first;let last=last">
+                                <td> {{i+1}}) {{tzone}}{{last? ' ' : ','}}</td>
+                            </div>
+                        </tr>
+                        <tr *ngIf="countryView.area!=null">
+                            <td>
+                                <b>Area :</b>
+                            </td>
+                            <td>{{countryView.area }} Kmsq</td>
+                        </tr>
+                        <tr *ngIf="countryView.regionalBlocs!=''">
+                            <td>
+                                <b>Regional Blocs :</b>
+                            </td>
+                            <td ><span *ngFor="let regionalBlockName of countryView.regionalBlocs ;let first=first;let last=last"> {{regionalBlockName.name}}{{last? ' ' : ','}}</span>  
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
